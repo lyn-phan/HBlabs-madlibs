@@ -14,7 +14,6 @@ AWESOMENESS = [
     'smashing', 'lovely',
 ]
 
-
 @app.route('/')
 def start_here():
     """Display homepage."""
@@ -41,7 +40,34 @@ def greet_person():
                            person=player,
                            compliment=compliment)
 
+@app.route('/game')
+def show_madlib_form():
+  
+    play_game = request.args.get("play")
 
+    if value == "yes":
+        return render_template('game.html')
+    else:
+        return render_template('goodbye.html')
+
+
+
+@app.route('/madlib')
+def show_madlib():  
+
+    name = request.args.get("person")
+    color = request.args.get("color")
+    noun = request.args.get("noun")
+    adjective = request.args.get("adjective")
+
+    return render_template("madlib.html",
+                           person=name,
+                           color=color,
+                           noun=noun,
+                           adjective=adjective,
+                           )
+
+    return render_template('madlib.html')     
 if __name__ == '__main__':
     # Setting debug=True gives us error messages in the browser and also
     # "reloads" our web app if we change the code.
